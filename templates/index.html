@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projeto Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+    <h1>Olá, Flask com Static, DB e CSV!</h1>
+    <img src="{{ url_for('static', filename='img/exemplo.png') }}" width="200" alt="Exemplo">
+</body>
+</html>
