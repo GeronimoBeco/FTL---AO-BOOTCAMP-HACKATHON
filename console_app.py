@@ -1,6 +1,12 @@
 import core.entidades as entity
 import sqlite3, os
 
+from core.services import (
+    criar_roteiros,
+    destinos_mais_avaliados,
+    pontos_turisticos_por_provincias,
+)
+
 entity.data_path = os.getcwd()
 def verificar_senha_e_email(email, senha):
     conn = sqlite3.connect('data/database.db')
@@ -54,49 +60,51 @@ class Program:
 
     def pontos_turisticos_por_provincias(self):
         "FALTA A IMPLEMENTAÇÃO DESTE METODO"
-    
+
 def titulo(name):
-    print("-"*60)
+    print("-" * 60)
     print(name.upper().center(60))
-    print("-"*60)
+    print("-" * 60)
 
 
 if __name__ == "__main__":
-    while 1:
+    program = Program()  # cria apenas uma vez
+
+    while True:
         titulo("ROTEIRO INTELIGENTE DE ECOTURISMO")
         print("1) Login")
         print("2) Registrar")
         print("3) Sair")
-        op = int(input(":"))
+        op = int(input(": "))
         if op == 1:
             titulo("LOGIN")
-            login = Program().login()
-            if login: break
+            login = program.login()   # usa a mesma instância
+            if login:
+                break
         elif op == 2:
             titulo("REGISTRAR")
-            Program().sign_in()
+            program.sign_in()
         elif op == 3:
             exit()
-        
-    while 1:
+
+    while True:
         titulo("MENU PRINCIPAL")
         print("1) Destinos mais Avaliados")
         print("2) Criar novo Roteiro")
         print("3) Pontos turisticos por Província")
         print("5) Sair")
-        op = int(input(":"))
+        op = int(input(": "))
+
         if op == 1:
             titulo("Destinos mais Avaliados")
-            print("Aguardando implemetação")
-            break
+            destinos_mais_avaliados()
         elif op == 2:
             titulo("Criar novo Roteiro")
-            print("Aguardando implemetação")
-            break
+            criar_roteiros(program.USER_ID) 
         elif op == 3:
             titulo("Pontos turisticos por Província")
-            print("Aguardando implemetação")
-            break
+            pontos_turisticos_por_provincias()
         elif op == 5:
             exit()
-        
+        else:
+            print("⚠️ Opção inválida!")
