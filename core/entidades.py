@@ -151,7 +151,7 @@ class RoadMap(Entity): # Roteiro
         cursor.execute('''
                 INSERT INTO roteiros (
                     usuario_id, ponto_turistico_id, hora_inicio, hora_fim,
-                    num_adulto, num_idosos, num_criancas, data_roteiro)
+                    num_adultos, num_idosos, num_criancas, data_roteiro)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             ''', (self.user_id, self.tourist_attraction_id, self.start_time, self.end_time,
                   self.num_adulto, self.num_idoso, self.num_criancas, self.road_map_date))
