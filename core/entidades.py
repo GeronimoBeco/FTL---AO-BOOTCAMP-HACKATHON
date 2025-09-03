@@ -10,7 +10,6 @@ class Entity:
     
     @classmethod
     def get_connection(cls):
-        print(cls.DATA_BASE_PATH)
         return sqlite3.connect(cls.DATA_BASE_PATH)
 
 class User(Entity): # Usuario

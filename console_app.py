@@ -17,6 +17,7 @@ class Program:
     USER_ID = 0
     
     def login(self): #Login
+        tentativa = 3
         while 1:
             email = input("Digite o email: ")
             senha = input("Digite a senha: ")
@@ -29,6 +30,11 @@ class Program:
                 break
             
             print("Email ou senha incorreta, tente novamente!")
+            tentativa -= 1 
+            print("Tentativas restante:", tentativa)
+            if not tentativa:
+                break
+            
 
     def sign_in(self): # Cadastro
         nome = input("Digite o nome: ")
@@ -42,7 +48,12 @@ class Program:
 
     def criar_roteiros(self):
         "FALTA A IMPLEMENTAÇÃO DESTE METODO"
-        pass
+
+    def destinos_mais_avaliados(self):
+        "FALTA A IMPLEMENTAÇÃO DESTE METODO"
+
+    def pontos_turisticos_por_provincias(self):
+        "FALTA A IMPLEMENTAÇÃO DESTE METODO"
     
 def titulo(name):
     print("-"*60)
@@ -51,8 +62,8 @@ def titulo(name):
 
 
 if __name__ == "__main__":
-    titulo("ROTEIRO INTELIGENTE DE ECOTURISMO")
     while 1:
+        titulo("ROTEIRO INTELIGENTE DE ECOTURISMO")
         print("1) Login")
         print("2) Registrar")
         print("3) Sair")
