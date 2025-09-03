@@ -27,13 +27,13 @@ class Program:
             
             if self.USER_ID:
                 print("Seja bem-vindo/a", user_info[1], user_info[2])
-                break
+                return 1
             
             print("Email ou senha incorreta, tente novamente!")
             tentativa -= 1 
             print("Tentativas restante:", tentativa)
             if not tentativa:
-                break
+                return 0
             
 
     def sign_in(self): # Cadastro
@@ -70,8 +70,8 @@ if __name__ == "__main__":
         op = int(input(":"))
         if op == 1:
             titulo("LOGIN")
-            Program().login()
-            break
+            login = Program().login()
+            if login: break
         elif op == 2:
             titulo("REGISTRAR")
             Program().sign_in()
