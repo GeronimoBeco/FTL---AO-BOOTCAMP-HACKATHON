@@ -64,4 +64,4 @@ Uso: Estatísticas de distribuição dos pontos turísticos em Angola.
 ![Banner do projeto](assets/cl-login.PNG)
 ![Banner do projeto](assets/pc-home.PNG)
 ![Banner do projeto](assets/cl-tupart.PNG)
-![Banner do projeto](IMG-20250904-WA0028.jpg)
+![Banner do projeto](assets/IMG-20250904-WA0028.jpg)
