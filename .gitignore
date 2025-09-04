@@ -5,3 +5,4 @@ iterr.py
 data/dados.csv
 mapa.py
 kk.py
+core/__pycache__
