@@ -1,0 +1,2 @@
+1 - Instale todas as dependencias que estão no requeriments.txt
+2 - Execute o ficheiro App.py

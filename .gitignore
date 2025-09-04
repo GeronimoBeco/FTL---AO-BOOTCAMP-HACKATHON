@@ -2,3 +2,6 @@
 venv/
 data/geoBoundaries-AGO-ADM1.geojson
 iterr.py
+data/dados.csv
+mapa.py
+kk.py
