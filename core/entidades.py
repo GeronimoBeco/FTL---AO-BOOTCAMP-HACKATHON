@@ -75,7 +75,7 @@ class TouristAttraction(Entity): # Ponto turistico
 
 class Avaliation(Entity): # Avaliação
     def __init__(self, user_id, tourist_attraction_id, mark,
-                 avaliation_date=None):
+                 avaliation_date=None, id=None):
         self.id = id
         self.user_id = user_id
         self.tourist_attraction_id = tourist_attraction_id
@@ -85,19 +85,24 @@ class Avaliation(Entity): # Avaliação
     def save(self):
         conn = self.get_connection()
         cursor = conn.cursor()
+        print("DEBUG types:")
+        print("user_id:", self.user_id, type(self.user_id))
+        print("tourist_attraction_id:", self.tourist_attraction_id, type(self.tourist_attraction_id))
+        print("mark:", self.mark, type(self.mark))
+
 
         if self.id is None:
             cursor.execute('''
-                INSERT INTO avaliacoes (usuario_id, ponto_turistico_id, nota, data_avaliacao)
-                VALUES (?, ?, ?, ?)
-            ''', (self.user_id, self.tourist_attraction_id, self.mark, self.avaliation_date))
+                INSERT INTO avaliacoes (usuario_id, ponto_turistico_id, nota)
+                VALUES (?, ?, 5)
+            ''', (self.user_id, self.tourist_attraction_id))
             self.id = cursor.lastrowid
         else:
             cursor.execute('''
                 UPDATE avaliacoes
-                SET usuario_id=?, ponto_turistico_id=?, nota=?, data_avaliacao=?
+                SET usuario_id=?, ponto_turistico_id=?, nota=?
                 WHERE id=?
-            ''', (self.user_id, self.tourist_attraction_id, self.mark, self.avaliation_date, self.id))
+            ''', (self.user_id, self.tourist_attraction_id, int(self.mark), self.id))
 
         conn.commit()
         conn.close()
@@ -196,7 +201,7 @@ class RoadMap(Entity): # Roteiro
     def search_from_id(self, id_road_map, show_value: bool=True):
         conn = self.get_connection()
         cursor = conn.cursor()
-        cursor.execute('SELECT * roteiros WHERE id = ?', (id_road_map))
+        cursor.execute('SELECT * from roteiros WHERE id = ?', (id_road_map))
         row = cursor.fetchone()
         conn.close()
 

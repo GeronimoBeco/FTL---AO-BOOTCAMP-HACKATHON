@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoAngola – Descubra a Natureza</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #007b8f;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar {
+      background-color: var(--primary-color);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-link {
+      color: #fff !important;
+    }
+
+    .hero-image {
+      position: relative;
+      background-image: url('https://correiokianda.info/wp-content/uploads/2020/09/Okavango.jpg'); /*Região do Okavango - Delta do Cubango*/
+      background-size: cover;
+      background-position: center;
+      height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-image::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(7, 148, 89, 0.3); /* verde com opacidade */
+  z-index: 1;
+}
+
+.hero-image > * {
+  position: relative;
+  z-index: 2; /* Garante que o conteúdo fique visível acima da camada verde */
+}
+    .hero-content {
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      z-index: 2;
+      padding: 0 20px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .hero-overlay-btn {
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .hero-btn {
+      background-color: #fff;
+      color: var(--primary-color);
+      padding: 15px 30px;
+      font-weight: bold;
+      border-radius: 30px;
+      border: 2px solid var(--primary-color);
+      transition: 0.3s ease;
+    }
+
+    .hero-btn:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-top: 80px;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .popular-destinations {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .destinations-wrapper {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .destination {
+      min-width: 250px;
+      height: 180px;
+      margin-right: 15px;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .destination img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .destination-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px 12px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    }
+
+    .scroll-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      z-index: 2;
+      display: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-left {
+      left: 10px;
+    }
+
+    .scroll-right {
+      right: 10px;
+    }
+    .how-it-works {
+  background-color: #fff;
+}
+
+.how-it-works h2 {
+  font-weight: 700;
+}
+
+.how-it-works i {
+  transition: color 0.3s ease;
+}
+
+.how-it-works i:hover {
+  color: #005f6b;
+  cursor: default;
+}
+
+.how-it-works h4 {
+  margin-top: 15px;
+  font-weight: 600;
+  color: #007b8f;
+}
+
+.how-it-works p {
+  color: #444;
+  font-size: 1rem;
+}
+
+.footer {
+  background-color: #007b8f;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.footer strong {
+  font-weight: 600;
+}
+
+.footer p, .footer small {
+  margin: 0;
+  line-height: 1.6;
+}
+
+    @media (min-width: 768px) {
+      .scroll-arrow {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://cdn-icons-png.flaticon.com/512/392/392071.png" alt="Logo" />
+        EcoTour
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-white"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="/roteiro">Roteiro</a></li>
+          <li class="nav-item"><a class="nav-link" href="/mapa">Mapa</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-image">
+    <div class="hero-content">
+      <h1 class="hero-title">Explore Angola Natural</h1>
+      <p class="hero-subtitle">Descubra paisagens deslumbrantes, aventuras ecológicas e roteiros únicos pelo coração da natureza angolana.</p>
+    </div>
+    <div class="hero-overlay-btn">
+      <a href="/mapa" class="btn hero-btn shadow">Criar Roteiro</a>
+    </div>
+  </section>
+
+  <!-- Destinos Populares -->
+  <div class="container mt-5">
+    <h2 class="section-title">Destinos Populares</h2>
+    <div class="popular-destinations position-relative">
+      <button class="scroll-arrow scroll-left" onclick="scrollDestinations(-1)">
+  <i class="fas fa-chevron-left"></i>
+</button>
+      <div class="destinations-wrapper" id="destinationsContainer">
+        {% for ponto in pontos_turisticos %}
+          <div class="destination" onclick="window.location.href='/ponto_turistico/{{ ponto.id }}'">
+            <img src="{{ ponto.url_imagem }}" alt="{{ ponto.nome }}">
+            <div class="destination-title">{{ ponto.nome }}</div>
+          </div>
+        {% endfor %}
+      </div>
+      <button class="scroll-arrow scroll-right" onclick="scrollDestinations(1)">
+  <i class="fas fa-chevron-right"></i>
+</button>
+    </div>
+  </div>
+
+  <section class="how-it-works py-5">
+  <div class="container text-center">
+    <h2 class="mb-4" style="color: #007b8f; font-weight: 700;">Como Funciona</h2>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-4 mb-4">
+        <i class="fas fa-map-marked-alt fa-3x mb-3" style="color: #007b8f;"></i>
+        <h4>Escolha seu destino</h4>
+        <p>Explore diversas paisagens naturais de Angola e selecione o local que mais combina com você.</p>
+      </div>
+      <div class="col-12 col-md-4 mb-4">
+        <i class="fas fa-route fa-3x mb-3" style="color: #007b8f;"></i>
+        <h4>Monte seu roteiro</h4>
+        <p>Personalize seu itinerário com as melhores atrações, atividades e dicas para uma experiência única.</p>
+      </div>
+      <div class="col-12 col-md-4 mb-4">
+        <i class="fas fa-hiking fa-3x mb-3" style="color: #007b8f;"></i>
+        <h4>Viva a aventura</h4>
+        <p>Curta suas viagens com segurança, praticidade e muita conexão com a natureza.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer py-4 mt-5">
+  <div class="container text-center">
+    <p class="mb-2">Com gratidão aos que tornaram este projeto possível:</p>
+    <p class="mb-1">
+      <strong>Geronimo Beco</strong>,
+      <strong>Ohana Bento</strong>, 
+      <strong>Iveth de Lima</strong>, 
+      <strong>Edmildo Levi</strong>,
+      <strong>Pitchi Sidibe</strong>, 
+      <strong>Lauri Carlos</strong>
+    </p>
+    <p class="mb-3">
+      Agradecimento especial ao nosso formador <strong>Cristovão Cacombe</strong> – UNDP Angola
+    </p>
+    <small>&copy; 2025 EcoTour. Todos os direitos reservados.</small>
+  </div>
+</footer>
+
+  <script>
+    function scrollDestinations(direction) {
+      const container = document.getElementById("destinationsContainer");
+      const scrollAmount = 300;
+      container.scrollBy({
+        left: direction * scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

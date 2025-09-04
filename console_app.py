@@ -44,7 +44,7 @@ class Program:
 
     def sign_in(self): # Cadastro
         nome = input("Digite o nome: ")
-        sobre_nome = input("Digite a sobre nome: ")
+        sobre_nome = input("Digite o sobre nome: ")
         email = input("Digite o email: ")
         senha = input("Digite a senha: ")
 

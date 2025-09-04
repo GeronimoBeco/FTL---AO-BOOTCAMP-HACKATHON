@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mapa - EcoAngola</title>
+  
+  <!-- Bootstrap + Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .navbar {
+      background-color: #007b8f;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-link {
+      color: #fff !important;
+    }
+
+    .map-label {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #007b8f;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .map-container {
+      margin: 30px auto;
+      max-width: 1000px;
+    }
+    .text-primary {
+      color: #007b8f !important;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://cdn-icons-png.flaticon.com/512/392/392071.png" alt="Logo" />
+        EcoTour
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-white"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="/roteiro">Roteiro</a></li>
+          <li class="nav-item"><a class="nav-link" href="/mapa">Mapa</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Título -->
+  <div class="container">
+    <div class="map-label">Mapa</div>
+  </div>
+
+  <!-- Mapa aqui -->
+  <div class="map-container">
+    <!-- COPIE O MAPA GERADO PELO FOLIUM AQUI -->
+    {{ mapa_html | safe }}
+  </div>
+
+  <!-- Seção de explicação do mapa -->
+  <section class="container my-5">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-8">
+        <h2 class="mb-3 text-primary">
+          <i class="fas fa-map-marked-alt me-2"></i>Como usar o Mapa
+        </h2>
+        <p class="lead">
+          O mapa interativo acima mostra as <strong>províncias de Angola</strong> com seus principais pontos turísticos.
+          Ao clicar em cada província ou marcador, você pode visualizar informações e acessar roteiros específicos daquela região.
+          Esta funcionalidade ajuda você a planejar viagens ecológicas de forma inteligente e visual.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

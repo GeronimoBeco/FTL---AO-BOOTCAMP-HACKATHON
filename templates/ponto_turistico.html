@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ ponto.nome }}</title>
+
+  <!-- Bootstrap + Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .navbar {
+      background-color: #007b8f;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-link {
+      color: #fff !important;
+    }
+
+    .hero-image {
+      position: relative;
+      height: 400px;
+      background-image: url('{{ ponto.url_imagem }}');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-title {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-size: 2.5rem;
+      color: white;
+      background-color: rgba(0,0,0,0.5);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .tab-content {
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .description-title {
+      border-left: 6px solid #007b8f;
+      padding-left: 12px;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .rating-stars i {
+      font-size: 2rem;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .rating-stars i.active {
+      color: #f1c40f;
+    }
+
+    .float-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #007b8f;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border: none;
+      z-index: 999;
+    }
+
+    .nav-tabs .nav-link {
+      color: gray !important;
+      background-color: #f8f9fa;
+      border: none;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-tabs .nav-link:hover {
+      color: #007b8f !important;
+    }
+
+    .nav-tabs .nav-link.active {
+      color: #007b8f !important;
+      background-color: #ffffff;
+      border-bottom: 2px solid #007b8f;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="https://cdn-icons-png.flaticon.com/512/392/392071.png" alt="Logo" />
+        EcoTour
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-white"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="/roteiro">Roteiro</a></li>
+          <li class="nav-item"><a class="nav-link" href="/mapa">Mapa</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Image -->
+  <section class="hero-image">
+    <h1 class="hero-title">{{ ponto.nome }}</h1>
+  </section>
+
+  <!-- Abas -->
+  <div class="container mt-5 mb-5">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="detalhes-tab" data-bs-toggle="tab" data-bs-target="#detalhes" type="button">Detalhes</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="descricao-tab" data-bs-toggle="tab" data-bs-target="#descricao" type="button">Descrição</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="avaliacao-tab" data-bs-toggle="tab" data-bs-target="#avaliacao" type="button">Avaliação</button>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-3" id="myTabContent">
+      <!-- Detalhes -->
+      <div class="tab-pane fade show active" id="detalhes" role="tabpanel">
+        <div class="info-grid">
+          <div><label>Província:</label> {{ ponto.provincia }}</div>
+          <div><label>Município:</label> {{ ponto.municipio }}</div>
+          <div><label>Avaliação:</label>
+            {% for i in range(1, 6) %}
+              <i class="fas fa-star {% if i <= ponto.media_avaliacao %}text-warning{% else %}text-muted{% endif %}"></i>
+            {% endfor %}
+            ({{ ponto.media_avaliacao }})
+          </div>
+          <div><label>Preço:</label> {{ ponto.precario }}</div>
+          <div><label>Horário:</label> {{ ponto.horario }}</div>
+          <div><label>Latitude:</label> {{ ponto.latitude }}</div>
+          <div><label>Longitude:</label> {{ ponto.longitude }}</div>
+        </div>
+      </div>
+
+      <!-- Descrição -->
+      <div class="tab-pane fade" id="descricao" role="tabpanel">
+        <div class="description-title">| Sobre {{ ponto.nome }}</div>
+        <p>{{ ponto.descricao }}</p>
+      </div>
+
+      <!-- Avaliação -->
+      <div class="tab-pane fade" id="avaliacao" role="tabpanel">
+        <div class="text-center mb-3">
+          <div class="rating-stars" id="rating-stars">
+              {% for i in range(1, 6) %}
+                <i class="fas fa-star {% if i <= avaliacao_usuario %}active{% endif %}" data-value="{{ i }}"></i>
+              {% endfor %}
+          </div>
+          <div class="mt-2" id="rating-value">Avaliação: {{ avaliacao_usuario }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão flutuante -->
+  <a href="/criar-roteiro/{{ ponto.id }}" class="float-btn">Criar Roteiro</a>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const stars = document.querySelectorAll("#rating-stars i");
+  const ratingValue = document.getElementById("rating-value");
+  const pontoID = {{ ponto.id }};
+
+  stars.forEach((star, idx) => {
+    star.addEventListener("click", () => {
+      const nota = idx + 1;
+
+      // Visual
+      stars.forEach((s, i) => {
+        s.classList.toggle("active", i <= idx);
+      });
+      ratingValue.textContent = `Avaliação: ${nota}`;
+
+      // Enviar avaliação ao servidor
+      fetch('/avaliar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ponto_id: pontoID,
+          nota: nota
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          console.log("Avaliação salva com sucesso");
+        } else {
+          alert("Erro ao salvar: " + data.message);
+        }
+      })
+      .catch(error => {
+        console.error("Erro:", error);
+      });
+    });
+  });
+  </script>
+
+</body>
+</html>

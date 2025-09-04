@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Criar Roteiro - EcoTurismo Angola</title>
+
+  <!-- Bootstrap + Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .navbar {
+      background-color: #007b8f;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-link {
+      color: #fff !important;
+    }
+
+    .form-section {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .form-title {
+      color: #007b8f;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-submit {
+      background-color: #007b8f;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #005f6b;
+    }
+
+    label {
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://cdn-icons-png.flaticon.com/512/392/392071.png" alt="Logo" />
+        EcoTour
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-white"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="/roteiro">Roteiro</a></li>
+          <li class="nav-item"><a class="nav-link" href="/mapa">Mapa</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4 text-dark">Destino da Viagem: {{ ponto.nome }}</h2>
+
+    <form class="form-section" method="POST" action="/salvar-roteiro">
+      <!-- Campo oculto com id_do_usuario -->
+      <input type="hidden" name="id_do_usuario" value="12345">
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="chegada" class="form-label">Chega ao Destino</label>
+          <input type="datetime-local" id="chegada" name="chegada" class="form-control" required>
+        </div>
+
+        <div class="col-md-6">
+          <label for="saida" class="form-label">Saída do Destino</label>
+          <input type="datetime-local" id="saida" name="saida" class="form-control" required>
+        </div>
+
+        <div class="col-md-4">
+          <label for="adultos" class="form-label">Número de Adultos</label>
+          <input type="number" id="adultos" name="adultos" class="form-control" required min="0" value="0">
+        </div>
+
+        <div class="col-md-4">
+          <label for="criancas" class="form-label">Número de Crianças</label>
+          <input type="number" id="criancas" name="criancas" class="form-control" required min="0" value="0">
+        </div>
+
+        <div class="col-md-4">
+          <label for="idosos" class="form-label">Número de Idosos</label>
+          <input type="number" id="idosos" name="idosos" class="form-control" required min="0" value="0">
+        </div>
+      </div>
+      <input type="hidden" name="ponto_id" value="{{ ponto.id }}">
+
+      <div class="mt-4 text-end">
+        <button type="submit" class="btn btn-submit">
+          <i class="fas fa-save me-2"></i>Salvar Roteiro
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
