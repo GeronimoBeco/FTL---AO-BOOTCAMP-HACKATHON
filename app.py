@@ -242,10 +242,10 @@ def salvar_roteiro():
     roteiro.save()
 
     flash("Roteiro salvo com sucesso!")
-    return redirect(url_for('roteiro'))
+    return redirect(url_for('roteiros'))
 
 @app.route('/roteiro')
-def roteiro():
+def roteiros():
     if 'usuario' not in session:
         return redirect(url_for('login'))
 
