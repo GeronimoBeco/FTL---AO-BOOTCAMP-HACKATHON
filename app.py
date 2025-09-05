@@ -245,7 +245,7 @@ def salvar_roteiro():
     return redirect(url_for('roteiro'))
 
 @app.route('/roteiro')
-def roteiros():
+def roteiro():
     if 'usuario' not in session:
         return redirect(url_for('login'))
 
