@@ -58,8 +58,8 @@ Agrupa por provincia e conta quantos pontos existem em cada uma.
 Saída: Lista de dicionários, ex.:
 
 [{"provincia": "Luanda", "total": 12}, {"provincia": "Huíla", "total": 8}]
-![Banner do projeto](assets/pc-login.PNG)
-![Banner do projeto](assets/cl-login.PNG)
-
-
 Uso: Estatísticas de distribuição dos pontos turísticos em Angola.
+
+![Banner do projeto](assets/pc-login.PNG) ![Banner do projeto](assets/cl-login.PNG)
+![Banner do projeto](assets/pc-home.PNG) ![Banner do projeto](assets/cl-tupart.PNG)
+![Banner do projeto](assets/IMG-20250904-WA0028.jpg)
